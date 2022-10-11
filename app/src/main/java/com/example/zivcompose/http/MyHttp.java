@@ -1,7 +1,6 @@
 package com.example.zivcompose.http;
 
 import com.example.zivcompose.http.util.*;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
@@ -25,7 +24,7 @@ public class MyHttp {
     * @Author: ziv
     * @Date: 2022/10/11
     */
-    private <T>MyHttp(Get get,T bean){
+    private <T>MyHttp(Get get,Class<T> bean){
         this.url = get.url;
         this.map = get.map;
         this.toEntity = get.toEntity;
@@ -43,7 +42,7 @@ public class MyHttp {
      * @author: ziv
      * @date: 2022/10/11 23:28
      */
-    private <T>MyHttp(Post post,T bean){
+    private <T>MyHttp(Post post,Class<T> bean){
         this.url = post.url;
         this.map = post.map;
         this.toEntity = post.toEntity;
@@ -122,7 +121,7 @@ public class MyHttp {
         * @Author: ziv
         * @Date: 2022/10/11
         */
-        public <T>MyHttp toEntity(T bean){
+        public <T>MyHttp toEntity(Class<T> bean){
             this.toEntity = true;
             Map<String,String> map = new HashMap<>();
             for (int i=0;i<queryKey.length;i++){
@@ -188,7 +187,7 @@ public class MyHttp {
          * @Author: ziv
          * @Date: 2022/10/11
          */
-        public <T>MyHttp toEntity(T bean){
+        public <T>MyHttp toEntity(Class<T> bean){
             this.toEntity = true;
             Map<String,String> map = new HashMap<>();
             for (int i=0;i<postKey.length;i++){

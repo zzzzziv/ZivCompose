@@ -1,5 +1,8 @@
 package com.example.zivcompose.entity;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * @program: ZivCompose
  * @description: 网易云音乐热门评论
@@ -10,6 +13,7 @@ public class MusicVO {
     private String name;
     private String url;
     private String picurl;
+
 
     public String getName() {
         return name;
@@ -43,4 +47,5 @@ public class MusicVO {
                 ", picurl='" + picurl + '\'' +
                 '}';
     }
+
 }

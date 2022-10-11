@@ -1,6 +1,8 @@
 package com.example.zivcompose.http.util;
 import com.google.gson.JsonObject;
 
+import java.util.List;
+
 /**
  * @program: ZivCompose
  * @description: 统一返回封装
@@ -11,9 +13,9 @@ public class ResultEntity<T> implements ResponseResult {
     private int code;
     private String msg;
     private String errMsg;
-    private T data;
+    private List<T> data;
 
-    public ResultEntity(int code, String msg, T data) {
+    public ResultEntity(int code, String msg, List<T> data) {
         this.code = code;
         this.msg = msg;
         this.data = data;
@@ -44,11 +46,11 @@ public class ResultEntity<T> implements ResponseResult {
         this.errMsg = errMsg;
     }
 
-    public T getData() {
+    public List<T> getData() {
         return data;
     }
 
-    public void setData(T data) {
+    public void setData(List<T> data) {
         this.data = data;
     }
 

@@ -1,15 +1,10 @@
-package com.example.zivcompose.http.service;
+package com.example.zivcompose.service;
 
-import com.blankj.utilcode.util.StringUtils;
 import com.example.zivcompose.entity.MusicVO;
 import com.example.zivcompose.http.MyHttp;
 import com.example.zivcompose.http.util.*;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
-import java.util.ArrayList;
+
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
@@ -55,8 +50,8 @@ public class TestService extends BaseService {
      */
     public CompletableFuture<ResultJson> getMusicY() {
         CompletableFuture<ResultJson> future = new MyHttp.Get("comments.163")
-                .queryKey("format")
-                .queryParams("json")
+                .queryKey("format","key2","key3")
+                .queryParams("json","123","321")
                 .toJson()
                 .getJsonData();
         return future;
@@ -68,9 +63,9 @@ public class TestService extends BaseService {
      * @date: 2022/10/11 22:58
      */
     public CompletableFuture<ResultEntity<MusicVO>> getMusicEnY() {
-        return new MyHttp.Get("comments.163")
-                .queryKey("format")
-                .queryParams("json")
+        return new MyHttp.Post("comments.163")
+                .postKey("format")
+                .postParams("json")
                 .toEntity(MusicVO.class)
                 .getEntityData();
     }

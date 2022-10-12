@@ -1,19 +1,12 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-//    id 'dagger.hilt.android.plugin'
+    id 'kotlin-parcelize'
+
 }
 
 android {
     compileSdk 32
-    //配置这个并不是让你隐藏过时api，而是让过时api或者不合规矩的语法展现出来
-    allprojects {
-        gradle.projectsEvaluated {
-            tasks.withType(JavaCompile) {
-                options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
-            }
-        }
-    }
 
     defaultConfig {
         applicationId "com.example.zivcompose"
@@ -56,26 +49,37 @@ android {
 
 dependencies {
 
-    //gson
-    implementation 'com.google.code.gson:gson:2.9.0'
+    //图片加载
+    implementation 'io.coil-kt:coil-compose:2.2.2'
+    //播放器
+    implementation 'com.tencent.liteav:LiteAVSDK_Player:10.7.0.13053'
     //mmkv 本地存储
     implementation 'com.tencent:mmkv:1.2.14'
-
     //    网络请求框架okhttp，retrofit,rxjava
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.9.0'
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.10.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.squareup.retrofit2:converter-scalars:2.9.0'
-
     // blankj:utilcode 网络状态工具类
     implementation 'com.blankj:utilcodex:1.31.0'
-    //hilt
-//    implementation 'com.google.dagger:hilt-android:2.38.1' // hilt的支持
-//    annotationProcessor 'com.google.dagger:hilt-android-compiler:2.38.1' //Dagger的注解处理器APT
+    //图标扩展
+    implementation "androidx.compose.material:material-icons-extended:$compose_version"
+
+    //accompanist组件，下方网站为教程
+    // https://www.proyy.com/?cat=&s=Accompanist%E7%BB%84%E4%BB%B6%E5%BA%93%E4%B8%AD%E6%96%87%E6%8C%87%E5%8D%97
+    def accompanist_version = "0.25.1"
+    implementation "com.google.accompanist:accompanist-systemuicontroller:$accompanist_version"
+    implementation "com.google.accompanist:accompanist-insets:$accompanist_version"
+    implementation "com.google.accompanist:accompanist-pager:$accompanist_version"
+    implementation "com.google.accompanist:accompanist-navigation-animation:$accompanist_version"
+    implementation "com.google.accompanist:accompanist-placeholder-material:$accompanist_version"
+    implementation "com.google.accompanist:accompanist-swiperefresh:$accompanist_version"
+
 
     //--compose依赖↓↓--//
     implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation "androidx.compose.ui:ui:$compose_version"
     implementation "androidx.compose.material:material:$compose_version"
     implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
@@ -87,7 +91,9 @@ dependencies {
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
+
 }
+
 
 
 

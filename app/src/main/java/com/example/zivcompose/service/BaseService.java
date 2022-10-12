@@ -1,4 +1,4 @@
-package com.example.zivcompose.http.service;
+package com.example.zivcompose.service;
 
 import com.example.zivcompose.http.MyApi;
 import com.example.zivcompose.http.MyRetrofit;

@@ -36,14 +36,14 @@ public class MMkvUtil {
      * @param: [mContext, name, bean]
      * @return: java.util.ArrayList<T>
      **/
-    public static <T> ArrayList<T> getArray(String name, T bean) {
+    public static <T> ArrayList<T> getArray(String name, Class<T> bean) {
         MMKV kv = MMKV.defaultMMKV();
         ArrayList<T> list = new ArrayList<T>();
         int size = kv.getInt(name + "size", 0);
         for (int i = 0; i < size; i++) {
             if (kv.getString(name + i, null) != null) {
                 try {
-                    list.add((T) new Gson().fromJson(kv.getString(name + i, null), bean.getClass()));
+                    list.add(new Gson().fromJson(kv.getString(name + i, null), bean));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -70,14 +70,14 @@ public class MMkvUtil {
 
     }
 
-    public static <T> T getBean(String name, T bean) {
+    public static <T> T getBean(String name, Class<T> bean) {
+        T t = null;
         MMKV kv = MMKV.defaultMMKV();
         String strBean = kv.getString(name, null);
         if (strBean != null) {
-            bean = (T) new Gson().fromJson(strBean, bean.getClass());
-//            System.out.println("测试getBean：" + bean.toString());
+            t = new Gson().fromJson(strBean, bean);
         }
-        return bean;
+        return t;
 
     }
 

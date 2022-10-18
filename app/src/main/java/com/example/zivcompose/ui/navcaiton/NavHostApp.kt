@@ -20,7 +20,7 @@ import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 fun NavHostApp() {
 
     val navController = rememberAnimatedNavController()
-    MyNavHost.getNavHost().setNav(navController)
+    MyNavHost.getInstance().setNav(navController)
             AnimatedNavHost(
                 navController = navController,
                 startDestination = RouterConst.mainView //设置首页

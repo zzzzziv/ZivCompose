@@ -2,10 +2,14 @@ package com.example.zivcompose.util;
 
 import com.google.gson.Gson;
 import com.tencent.mmkv.MMKV;
-
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * @program: ZivCompose
+ * @description: MMKV工具类
+ * @author: ziv
+ * @create: 2022-10-12 02:53
+ **/
 public class MMkvUtil {
     public static <T> void setArray(List<T> list, String name) {
         MMKV kv = MMKV.defaultMMKV();

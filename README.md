@@ -15,7 +15,10 @@ composeUi mvvm模板 一切为了优雅写代码。
 ### 4.添加了广播实例 ###
 ### 5.添加了viewmodel实例 ###
 ### 6.实现沉浸式主题 ###
-![](Screenshot_20221019_001704.png)![](Screenshot_20221019_001718.png)
+
+<img src="Screenshot_20221019_001704.png" width = 40% height = 60% />
+<img src="Screenshot_20221019_001718.png" width = 40% height = 60% />
+
 #### 测试页面 ####
 #### 目录 ####
 ![](目录.png)

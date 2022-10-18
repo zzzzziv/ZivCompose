@@ -15,5 +15,17 @@ composeUi mvvm模板 一切为了优雅写代码。
 ### 4.添加了广播实例 ###
 ### 5.添加了viewmodel实例 ###
 ### 6.实现沉浸式主题 ###
-
+![](Screenshot_20221019_001704.png)![](Screenshot_20221019_001718.png)
+#### 测试页面 ####
 #### 目录 ####
+![](目录.png)
+#### 导航 ####
+    MyNavHost.toPage(RouterConst.firstView)
+MyNavHost:导航实例，已经配置好，可以直接调用
+RouterConst.firstView：自己配置的目标页面
+#### 网络请求 ####
+![](1666109386053.jpg)
+![](1666109417652.jpg)
+#### 网络取值 ####
+![](1666109442362.jpg)
+

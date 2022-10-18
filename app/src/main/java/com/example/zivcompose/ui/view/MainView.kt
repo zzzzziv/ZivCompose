@@ -21,7 +21,7 @@ import com.example.zivcompose.viewmodel.FirstViewModel
 @Composable
 fun MainView() {
 
-    val firstvm: FirstViewModel = viewModel()
+
 
 
 
@@ -44,7 +44,9 @@ fun MainView() {
             }
             Spacer(modifier = Modifier.height(40.dp))
             Button(
-                onClick = { MyNavHost.toPage(RouterConst.firstView)},
+                onClick = {
+                    MyNavHost.toPage(RouterConst.firstView)
+                          },
                 modifier = Modifier
                     .height(48.dp)
                     .fillMaxWidth()
@@ -57,11 +59,7 @@ fun MainView() {
 
                 )
             }
-            Text(text = "以下为firstviewmodel的值：")
-            Text(text = firstvm.value1)
-            Text(text = firstvm.value2)
-            Text(text = firstvm.value3)
-            Text(text = firstvm.value4)
+
         }
 
 

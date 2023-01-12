@@ -6,6 +6,11 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Switch;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @program: ZivCompose
@@ -17,24 +22,31 @@ public class BroadcastReceiveUtil {
     private Context mContext;
     private BroadcastReceiver mDeviceKeyReceiver = null;
     private OnKeyListener mListener;
-
-    private String mAction;
-
-    public BroadcastReceiveUtil (Context context, String action,OnKeyListener listener) {
+    private List<String> mActions;
+    public  String currAction;
+    public BroadcastReceiveUtil(Context context){
         mContext = context;
+    }
+
+    public void setBroadcast(OnKeyListener listener, String... actions) {
         mListener = listener;
-        mAction = action;
+        mActions = Arrays.asList(actions);
         mDeviceKeyReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                if (intent.getAction().contains(mAction)){
+                currAction = intent.getAction();
+                if (mActions.contains(currAction)){
+
                     //某些事件有返回值，可以根据自己业务编写
 //                    String callback = intent.getStringExtra("关键字");
+
                     mListener.onClick();
                 }
             }
         };
-        mContext.registerReceiver(mDeviceKeyReceiver, new IntentFilter(mAction));
+        IntentFilter filter = new IntentFilter();
+        mActions.forEach(filter::addAction);
+        mContext.registerReceiver(mDeviceKeyReceiver, filter);
     }
 
     public void unregister(){
@@ -53,15 +65,24 @@ public class BroadcastReceiveUtil {
     public static void main(String[] args) {
         //监听事件
         String action ="android.intent.action.CLOSE_SYSTEM_DIALOGS";
+        //注册了广播
+        BroadcastReceiveUtil bcr = new BroadcastReceiveUtil(ShowToast.getContext());
         //监听方法
         OnKeyListener onKeyListener = new OnKeyListener() {
             @Override
             public void onClick() {
-                ShowToast.show("监测到监听");
+                switch (bcr.currAction){
+                    case "":
+                        ShowToast.show("监测到监听");
+                        break;
+
+                }
+
+
             }
         };
-        //注册了广播
-        BroadcastReceiveUtil bcr = new BroadcastReceiveUtil(ShowToast.getContext(),action,onKeyListener);
+        bcr.setBroadcast(onKeyListener,action,"","");
+
 
         //注销广播
         bcr.unregister();

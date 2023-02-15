@@ -10,7 +10,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import com.tencent.mmkv.MMKV;
+
+import java.io.File;
 import java.util.ArrayList;
+
+import coil.Coil;
+import coil.ImageLoader;
+import coil.disk.DiskCache;
+import coil.memory.MemoryCache;
 
 
 public class APP extends Application {
@@ -21,12 +28,14 @@ public class APP extends Application {
 
 
 
+
     @Override
     public void onCreate() {
         super.onCreate();
         context = this;
         Thread.setDefaultUncaughtExceptionHandler(restartHandler);//重启App，安全性
         MMKV.initialize(this);
+        initCoil();
         registerActivityListener();
     }
 
@@ -85,7 +94,25 @@ public class APP extends Application {
         });
     }
 
+    private void initCoil(){
+        ImageLoader imageLoader = new ImageLoader.Builder(this)
+                .diskCache(new DiskCache.Builder()
+                        .directory(getCacheFile())
+                        .maxSizePercent(0.05)
+                        .build())
+                .memoryCache(new MemoryCache.Builder(this).maxSizePercent(0.25).build())
+                .build();
+        Coil.setImageLoader(imageLoader);
 
+    }
+
+    private File getCacheFile() {
+        File fileCache = new File(getApplicationContext().getExternalFilesDir(null).getAbsolutePath() + "/Cache");
+        if (!fileCache.exists()) {
+            fileCache.mkdir();
+        }
+        return new File(getApplicationContext().getExternalFilesDir(null).getAbsolutePath() + "/Cache");
+    }
     public Context getContext(){
         return context;
     }

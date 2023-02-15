@@ -6,12 +6,12 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.example.zivcompose"
         minSdk 25
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -36,6 +36,7 @@ android {
     }
     buildFeatures {
         compose true
+        viewBinding true
     }
     composeOptions {
         kotlinCompilerExtensionVersion compose_version
@@ -48,7 +49,19 @@ android {
 }
 
 dependencies {
+    implementation 'com.google.android.material:material:1.4.+'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.4.1'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.4.1'
 
+
+    //compose相关的依赖统一管理，不需要添加版本号
+    def composeBom = platform('androidx.compose:compose-bom:2023.01.00')
+    implementation composeBom
+    androidTestImplementation composeBom
+
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.1'
     //图片加载
     implementation 'io.coil-kt:coil-compose:2.2.2'
     //mmkv 本地存储
@@ -60,9 +73,8 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.squareup.retrofit2:converter-scalars:2.9.0'
     // blankj:utilcode 网络状态工具类
-    implementation 'com.blankj:utilcodex:1.31.0'
-    //图标扩展
-    implementation "androidx.compose.material:material-icons-extended:$compose_version"
+    implementation 'com.blankj:utilcodex:1.31.1'
+
 
     //accompanist组件，下方网站为教程
     // https://www.proyy.com/?cat=&s=Accompanist%E7%BB%84%E4%BB%B6%E5%BA%93%E4%B8%AD%E6%96%87%E6%8C%87%E5%8D%97
@@ -76,20 +88,26 @@ dependencies {
 
 
     //--compose依赖↓↓--//
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation "androidx.compose.ui:ui:$compose_version"
-    implementation "androidx.compose.material:material:$compose_version"
-    implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1'  //viewmodel --类似vuex一样，实现全局单例
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.1'
-    implementation 'androidx.activity:activity-compose:1.4.0'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
-    debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
-    debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
+    // UI Tests
+    debugImplementation "androidx.compose.ui:ui-test-manifest"
+    androidTestImplementation "androidx.compose.ui:ui-test-junit4"
+    // Android Studio 预览版支持（即时显示）
+    implementation "androidx.compose.ui:ui-tooling-preview"
+    debugImplementation "androidx.compose.ui:ui-tooling"
+
+    implementation 'androidx.compose.animation:animation'  //compose动画
+    implementation "androidx.compose.ui:ui"
+    implementation "androidx.compose.material:material"
+
+    implementation 'androidx.compose.material:material-icons-core'
+//    implementation "androidx.compose.material:material-icons-extended"    //图标扩展,可以不用
+
+    implementation 'androidx.activity:activity-compose:1.5.1'   // Optional - 集成compose的activity扩展
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1'    // Optional - 集成viewModel
+    implementation 'androidx.compose.runtime:runtime-livedata' // Optional - 集成Livedata
+    implementation 'androidx.compose.runtime:runtime-rxjava2'    // Optional - 集成Rxjava
+
+
 
 }
 

@@ -2,7 +2,11 @@ package com.example.zivcompose.util;
 
 import com.blankj.utilcode.util.StringUtils;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
 import com.google.gson.reflect.TypeToken;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +48,7 @@ public class CodeUtil {
             listT = new ArrayList<T>();
             //将Object的list中的的每一个元素中的json字符串转换为泛型代表的类型加入泛型代表的list集合返回
             for (Object obj : listObj) {
+
                 T perT = new GsonBuilder().create().fromJson(obj.toString(), classT);
                 listT.add(perT);
             }

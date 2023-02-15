@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="Theme.ZivCompose" parent="android:Theme.Material.Light.NoActionBar">
-<!--        <item name="android:statusBarColor">@color/black</item>-->
-<!--        <item name="android:windowLightStatusBar">true</item>-->
+        <!--        <item name="android:statusBarColor">@color/black</item>-->
+        <!--        <item name="android:windowLightStatusBar">true</item>-->
     </style>
+
+    <style name="Theme.ZivCompose.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="colorPrimaryDark">@color/white</item>
+        <item name="android:windowBackground">@drawable/bg_splash</item>
+
+    </style>
+
+    <style name="Theme.ZivCompose.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.ZivCompose.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

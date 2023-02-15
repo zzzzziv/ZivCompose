@@ -1,34 +1,34 @@
-package com.example.zivcompose.ui.view
+package com.example.zivcompose.ui.pages.main
 
 
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 
-import androidx.compose.material.icons.Icons
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import com.example.zivcompose.ui.components.TapBar
-import com.example.zivcompose.viewmodel.FirstViewModel
-import kotlinx.coroutines.launch
+import com.example.zivcompose.ui.navcaiton.NewNavHost
+import com.example.zivcompose.ui.navcaiton.RouterConst
+import com.example.zivcompose.ui.viewmodel.FirstViewModel
 
 @Composable
 fun FirstView() {
-
+    val nav: NewNavHost = viewModel()
     //这样创建viewmodel 可以 让lifecycle 管理viewmodel的状态
-    val firstvm:FirstViewModel = viewModel()
+    val firstvm: FirstViewModel = viewModel()
     val coroutine = rememberCoroutineScope() //用于挂起线程
+
+
+
 
 //---------------------界面-------------------------//
     Column(Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
@@ -40,7 +40,8 @@ fun FirstView() {
             contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier
-                .size(120.dp).clip(CircleShape)
+                .size(120.dp)
+                .clip(CircleShape)
         )
 
         Spacer(modifier = Modifier.height(40.dp))
@@ -49,9 +50,10 @@ fun FirstView() {
         OutlinedTextField(value =firstvm.password, onValueChange = {firstvm.password = it}, label ={ Text("密码") })
         Spacer(modifier = Modifier.height(40.dp))
         Button(onClick = {
-                         coroutine.launch {//挂起线程
-                             firstvm.httptest()
-                         }
+                         nav.navigate(RouterConst.mainView)
+//                         coroutine.launch {//挂起线程
+//                             firstvm.httptest()
+//                         }
         }, content = { Text("登录") })
 
         Text(text = firstvm.value1)

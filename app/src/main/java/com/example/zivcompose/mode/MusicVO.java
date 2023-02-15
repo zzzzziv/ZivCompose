@@ -1,7 +1,4 @@
-package com.example.zivcompose.entity;
-
-import android.os.Parcel;
-import android.os.Parcelable;
+package com.example.zivcompose.mode;
 
 /**
  * @program: ZivCompose

@@ -5,11 +5,8 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.zivcompose.ui.navcaiton.MyNavHost
-import com.example.zivcompose.ui.navcaiton.RouterConst
-import com.example.zivcompose.ui.view.FirstView
-import com.example.zivcompose.ui.view.MainView
+import com.example.zivcompose.ui.pages.main.FirstView
+import com.example.zivcompose.ui.pages.main.MainView
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController

@@ -66,7 +66,7 @@ public class BroadcastReceiveUtil {
         //监听事件
         String action ="android.intent.action.CLOSE_SYSTEM_DIALOGS";
         //注册了广播
-        BroadcastReceiveUtil bcr = new BroadcastReceiveUtil(ShowToast.getContext());
+        BroadcastReceiveUtil bcr = new BroadcastReceiveUtil(AppGlobalUtils.getApplication());
         //监听方法
         OnKeyListener onKeyListener = new OnKeyListener() {
             @Override

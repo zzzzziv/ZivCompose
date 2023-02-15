@@ -38,7 +38,7 @@ import androidx.compose.ui.text.style.TextAlign
  * @param isFocus Boolean  是否获取到焦点
  */
 @Composable
-fun Input(
+fun NoSkinInput(
     value: String,
     onValueChange: (String) -> Unit,
     modifier: Modifier = Modifier,

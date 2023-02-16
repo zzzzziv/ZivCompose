@@ -25,7 +25,7 @@ fun SwiperContent(
 ) {
 
     //虚拟页数
-    val virtualCount = 99999
+    val virtualCount = Int.MAX_VALUE
     //实际页数
     val actualCount = swipeData.size
 

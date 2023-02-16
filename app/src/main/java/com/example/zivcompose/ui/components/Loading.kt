@@ -97,7 +97,7 @@ fun Loading() {
                     drawIntoCanvas {
                         it.nativeCanvas.drawArc(
                             RectF(-80f, -20f, 80f, 20f),
-                            (atan2(pos[1], pos[0])) * 180 / PI.toFloat(),// 坑点 3 反三角函数的使用
+                            (atan2(pos[1], pos[0])) * 180 / PI.toFloat(),//
                             20f,// 调整SweepAngle 即可改变长度
                             false,
                             paint
@@ -109,13 +109,9 @@ fun Loading() {
 
         }
 
-
     }
 
 }
-
-
-
 
 
 

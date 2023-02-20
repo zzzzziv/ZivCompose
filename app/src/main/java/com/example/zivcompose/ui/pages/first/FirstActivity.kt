@@ -17,11 +17,9 @@ class FirstActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityFirstBinding.inflate(layoutInflater)
-
         hideScreenBar()
-        lateToMain(1000)
+        lateToMain()
         setContentView(binding.root)
-
 
     }
 
@@ -37,7 +35,6 @@ class FirstActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
     }
-
 
     private fun hideScreenBar(){
         //Android各种屏，刘海屏，打孔屏满屏显示: https://blog.csdn.net/cention168/article/details/124037221
@@ -60,12 +57,12 @@ class FirstActivity : AppCompatActivity() {
         decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
     }
 
-    private fun lateToMain(time:Long){
+    private fun lateToMain(){
         Handler(Looper.myLooper()!!).postDelayed(Runnable {
             val intent = Intent(this,MainActivity().javaClass)
             startActivity(intent)
             finish()
-        }, time) //延迟10秒执行
+        }, 1000) //延迟1秒执行
 
     }
 

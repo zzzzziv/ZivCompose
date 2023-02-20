@@ -1,19 +1,16 @@
 package com.example.zivcompose.http.api
 
-import com.example.zivcompose.http.MyApi
+import android.util.Log
 import com.example.zivcompose.http.MyHttp.Get
 import com.example.zivcompose.http.MyHttp.Post
 import com.example.zivcompose.http.MyRetrofit
-import com.example.zivcompose.http.util.EntityCallback
-import com.example.zivcompose.http.util.JsonCallback
-import com.example.zivcompose.http.util.ResultEntity
-import com.example.zivcompose.http.util.ResultJson
+import com.example.zivcompose.http.util.*
 import com.example.zivcompose.mode.MusicVO
 import java.util.concurrent.CompletableFuture
 
 class BaseApi {
     private var myRetrofit: MyRetrofit = MyRetrofit.getRetrofitClient()
-    var http: MyApi = myRetrofit.myApi()
+    var http: MyApiKotlin = myRetrofit.myApiKotlin()
 
 
     /**
@@ -25,7 +22,10 @@ class BaseApi {
         val map: MutableMap<String, String> = HashMap()
         val future = CompletableFuture<ResultJson>()
         map["format"] = "json"
-        http.Get("comments.163", map).enqueue(JsonCallback(future))
+        val res = http.get("comments.163", map).data
+
+        Log.d("====",res.toString())
+
         return future
     }
 
@@ -38,7 +38,7 @@ class BaseApi {
         val map: MutableMap<String, String> = HashMap()
         val future = CompletableFuture<ResultEntity<MusicVO>>()
         map["format"] = "json"
-        http.Get("comments.163", map).enqueue(EntityCallback(future, MusicVO::class.java))
+        http.get("comments.163", map).data
         return future
     }
 

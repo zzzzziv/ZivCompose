@@ -15,13 +15,21 @@ class FirstViewModel:ViewModel() {
     var value2 by mutableStateOf("")
     var value3 by mutableStateOf("")
     var value4 by mutableStateOf("")
-
+    var list = mutableListOf<String>("")
+    var value5 by mutableStateOf(0)
 
     private val api = BaseApi()
 
+    suspend fun changenlist() {
+        list.removeAll(list)
+        list.add("123")
+        list.add("3333")
+        list.add("4444")
+
+    }
     suspend fun httptest(){
         //利用了complete作为异步接收数据，res是返回值，err是错误。
-        api.getMusic()?.whenComplete { res, err ->
+         api.getMusic()?.whenComplete { res, err ->
             if (err==null){//没有抛出错误就获取res
                 value1 = res.data.toString()
             }

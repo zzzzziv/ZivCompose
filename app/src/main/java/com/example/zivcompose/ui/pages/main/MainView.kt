@@ -1,18 +1,15 @@
 package com.example.zivcompose.ui.pages.main
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.clickable
+import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Close
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -22,8 +19,8 @@ import com.example.zivcompose.ui.components.SimpleDropDownMenu
 import com.example.zivcompose.ui.components.SwiperContent
 import com.example.zivcompose.ui.components.TapBar
 import com.example.zivcompose.ui.navcaiton.NewNavHost
-import com.example.zivcompose.ui.navcaiton.RouterConst
-import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
+import com.example.zivcompose.ui.viewmodel.FirstViewModel
+import kotlinx.coroutines.launch
 
 
 @SuppressLint("SuspiciousIndentation")
@@ -38,6 +35,7 @@ fun MainView() {
         mutableStateOf("")
     }
 
+    val firstvm: FirstViewModel = viewModel()
     //类型数据
     val swipeData = listOf<String>(
         "https://img1.baidu.com/it/u=645828909,2832941895&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500",
@@ -45,6 +43,10 @@ fun MainView() {
         "https://img1.baidu.com/it/u=1894181349,2626000691&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500",
         "https://img2.baidu.com/it/u=4038846864,3805332559&fm=253&fmt=auto&app=120&f=JPEG?w=1280&h=800"
     )
+
+    val listA = remember { mutableStateListOf("") }
+    val listB = listOf<String>("123","234")
+    val CoroutineScope = rememberCoroutineScope()
 
 //----------------------界面-----------------------------//
         Column(Modifier.fillMaxSize()) {
@@ -66,7 +68,11 @@ fun MainView() {
             Spacer(modifier = Modifier.height(40.dp))
             Button(
                 onClick = {
-                    nav.navigate(RouterConst.firstView)
+//                    nav.navigate(RouterConst.firstView)
+                    CoroutineScope.launch {
+                        firstvm.httptest()
+                    }
+
                           },
                 modifier = Modifier
                     .height(48.dp)
@@ -89,7 +95,11 @@ fun MainView() {
 
             ) {
                 SimpleDropDownMenu(
-                    values = listOf("A","b","C"),
+                    selectedIndex = firstvm.value5,
+                    values = firstvm.list,
+                    onChange = {
+                        Log.d("====",firstvm.value5.toString())
+                    }
                 )
             }
 

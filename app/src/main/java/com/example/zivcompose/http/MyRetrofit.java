@@ -5,6 +5,8 @@ import com.example.zivcompose.config.HttpConst;
 import com.example.zivcompose.http.interceptor.LoggingInterceptor;
 import com.example.zivcompose.http.interceptor.NetCacheInterceptor;
 import com.example.zivcompose.http.interceptor.OfflineCacheInterceptor;
+import com.example.zivcompose.http.util.MyApiKotlin;
+
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
@@ -71,5 +73,7 @@ public class MyRetrofit {
     public  MyApi myApi(){
         return retrofit.create(MyApi.class);
     }
+
+    public MyApiKotlin myApiKotlin(){return  retrofit.create(MyApiKotlin.class);}
 
 }
